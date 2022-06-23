@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 
 public class MybatisTest {
@@ -18,19 +19,25 @@ public class MybatisTest {
         //2.创建SQLSessionFactory工厂
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
         SqlSessionFactory factory = builder.build(in);
-        //3.使用工厂SQLSession对象
-        SqlSession session = factory.openSession();
-        //4.使用SQLSession创建Dao接口的代理对象
-        UserDao userDao = session.getMapper(UserDao.class);
-        //5.使用代理对象执行方法
-        List<User> users = userDao.findAll();
-        for (User user : users) {
-            System.out.println(user.toString());
-        }
+        SqlSession session = null;
+        try {
+            //3.使用工厂SQLSession对象
+            session = factory.openSession();
+            //4.使用SQLSession创建Dao接口的代理对象
+            UserDao userDao = session.getMapper(UserDao.class);
+            //5.使用代理对象执行方法
+            List<User> users = userDao.findAll();
+            for (User user : users) {
+                System.out.println(user.toString());
+            }
 //        String userName = userDao.findName();
 //        System.out.println(userName);
-        //6.释放资源
-        session.close();
-        in.close();
+        } catch (Exception e) {
+            System.out.println(e.fillInStackTrace());
+        } finally {
+            //6.释放资源
+            session.close();
+            in.close();
+        }
     }
 }
