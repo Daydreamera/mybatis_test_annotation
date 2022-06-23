@@ -1,6 +1,7 @@
 package com.datayes.test;
 
 import com.datayes.dao.UserDao;
+import com.datayes.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class MybatisTest {
     public static void main(String[] args) throws IOException {
@@ -21,12 +23,12 @@ public class MybatisTest {
         //4.使用SQLSession创建Dao接口的代理对象
         UserDao userDao = session.getMapper(UserDao.class);
         //5.使用代理对象执行方法
-//        List<User> users = userDao.findAll();
-//        for (User user : users) {
-//            System.out.println(user.getUserSex());
-//        }
-        String userName = userDao.findName();
-        System.out.println(userName);
+        List<User> users = userDao.findAll();
+        for (User user : users) {
+            System.out.println(user.toString());
+        }
+//        String userName = userDao.findName();
+//        System.out.println(userName);
         //6.释放资源
         session.close();
         in.close();

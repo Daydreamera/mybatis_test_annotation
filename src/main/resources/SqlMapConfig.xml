@@ -14,9 +14,9 @@
             <dataSource type="POOLED">
                 <!--配置连接数据库的四个基本信息-->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://192.168.229.130:3306/mybatis"/>
+                <property name="url" value="jdbc:mysql://192.168.1.200:3306/rabyte"/>
                 <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="password" value="Datayes@123"/>
             </dataSource>
         </environment>
     </environments>
