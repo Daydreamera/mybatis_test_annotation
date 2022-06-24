@@ -1,5 +1,6 @@
 package com.datayes.dao;
 
+import com.datayes.domain.Author;
 import com.datayes.domain.User;
 import org.apache.ibatis.annotations.Select;
 
