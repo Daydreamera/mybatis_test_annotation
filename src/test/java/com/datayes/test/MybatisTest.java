@@ -46,7 +46,7 @@ public class MybatisTest {
         SqlSessionFactory rabyteFactory = builder.build(in, "rabyte");
         SqlSession rabyteSqlSession = rabyteFactory.openSession();
         AuthorDao rabyteMapper = rabyteSqlSession.getMapper(AuthorDao.class);
-        List<Author> authors = rabyteMapper.getAuthor();
+        List<Author> authors = rabyteMapper.getAuthor("4042144");
         for (Author a : authors) {
             System.out.println(a);
         }
